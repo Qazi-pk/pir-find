@@ -4,11 +4,13 @@ Find a closed-form formula in a table of numbers with [PIR](https://github.com/Q
 
 **Status: 0.1.0.dev0, not released.** PIR 3.10.0 inside.
 
-## Install (Python 3.10+)
+## Install (Python 3.10+, needs `git`)
+Not on PyPI yet, so install from GitHub:
 ```
-pip install .            # command line
-pip install ".[mcp]"     # plus the MCP server
+pip install "git+https://github.com/Qazi-pk/pir-find.git"            # command line
+pip install "pir-find[mcp] @ git+https://github.com/Qazi-pk/pir-find.git"   # plus the MCP server
 ```
+Or from a clone: `pip install .` / `pip install ".[mcp]"`.
 
 ## Command line
 ```
@@ -22,7 +24,10 @@ Limits: 5 MB, 8 input columns, 20,000 rows (larger tables are sampled), 300 s pe
 ## MCP server (Claude Code, Claude desktop, Cursor, Cline)
 Claude Code: `claude mcp add pir-find -- pir-find-mcp`
 
-Claude desktop / others (config file):
+With `uv` installed, no separate install is needed:
+`claude mcp add pir-find -- uvx --from "pir-find[mcp] @ git+https://github.com/Qazi-pk/pir-find.git" pir-find-mcp`
+
+Claude desktop / others (config file, after `pip install`):
 ```json
 { "mcpServers": { "pir-find": { "command": "pir-find-mcp" } } }
 ```
